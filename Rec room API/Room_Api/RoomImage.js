@@ -3,7 +3,6 @@ if (!window.location.href.includes("rec.net")) {
     throw new Error("Not in RecNet!")
 }
  
-
 auth_storage = JSON.parse(localStorage.getItem("na_current_user_session"))
 if (!auth_storage) {
     alert("Not logged in!")
@@ -11,26 +10,27 @@ if (!auth_storage) {
 }
 
 AToken = auth_storage.accessToken
-
 acc_token = "Bearer " + (AToken)
 
-
+roomID = prompt("Please enter the Room ID!")
 img = prompt("Please enter the img.rec.net link!")
 
 img_name = img.split("/").at(-1).split("?").at(0)
 
-r = await fetch("https://rooms.rec.net/rooms/931444637734012214/image", {
+r = await fetch(`https://rooms.rec.net/rooms/${roomID}/image`, {
     "headers": {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         "Authorization": acc_token
     },
     "body": "imageName=" + img_name,
-    "method": "PUT"})
+    "method": "PUT"
+})
 
-    is_json = r.headers.get('content-type').includes("application/json")
+is_json = r.headers.get('content-type').includes("application/json")
 if (!is_json) {
     alert("You didn't input a valid link!")
-    throw new Error("Didn't input a valid link!")}
+    throw new Error("Didn't input a valid link!")
+}
 
-    r_json = await r.json()
+r_json = await r.json()
 alert("Success: " + r_json.success + "\nError: " + r_json.error)
