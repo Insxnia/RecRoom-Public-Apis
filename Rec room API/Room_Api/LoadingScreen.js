@@ -14,12 +14,13 @@ AToken = auth_storage.accessToken
 
 acc_token = "Bearer " + (AToken)
 
+roomID = prompt("Please enter the Room ID!")
 
 img = prompt("Please enter the img.rec.net link!")
 
 img_name = img.split("/").at(-1).split("?").at(0)
 
-r = await fetch("https://rooms.rec.net/rooms/931444637734012214/loadscreen", {
+r = await fetch("https://rooms.rec.net/rooms/${roomID}/loadscreen", {
     "headers": {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         "Authorization": acc_token
@@ -34,3 +35,4 @@ if (!is_json) {
 
     r_json = await r.json()
 alert("Success: " + r_json.success + "\nError: " + r_json.error)
+
