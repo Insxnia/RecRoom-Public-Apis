@@ -15,6 +15,10 @@ The collection will continuously expand – more **categories, APIs, scripts, an
 
 ### 👤 Player API
 - `Profile_Image.js` – Set a custom profile picture  
+- `Ban_Details.js` – Get the Ban Details from your Account
+- `Banner_Image.js` – Set a custom Banner picture  
+- `Bio.js` – Change your Bio via API
+- `Display_Name.js` – Change your Display Name Bio via API
 
 ### 🏠 Room API
 - `LoadingScreen.js` – Set a custom loading screen  
